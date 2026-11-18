@@ -1,0 +1,171 @@
+# ontology-ejemplo: tu dominio en una carpeta
+
+Este repo declara un dominio chico, las plantas de una casa, y con eso tiene su propio grafo. Lo arma
+[ontologyLearning](https://github.com/Kiri23/ontologyLearning), el motor: lee la carpeta `ontologia/`, valida los datos
+con SHACL y los sirve por CLI y por MCP. No hay que tocar el motor.
+
+Lo que hay acá:
+
+| Archivo | Qué es |
+|---|---|
+| `ontologia/planta.ttl` | la clase `jardin:Planta` y sus propiedades: `riegoCadaDias` y `luz` |
+| `ontologia/planta-reglas.ttl` | lo que toda planta cumple: un nombre, un riego de 1 día o más, una luz de tres posibles |
+| `ontologia/riego.rq` | una consulta: las plantas que se riegan cada `dias` días o más seguido |
+| `plantas/plantas.ttl` | los datos: cinco plantas |
+| `raices.json` | le dice al motor que este repo es la única raíz del grafo |
+
+`grafo/` aparece cuando corrés el motor y no se versiona.
+
+## Lo que necesitás
+
+- Python 3.11.
+- Un checkout de ontologyLearning. Hoy es un repo privado: sin acceso, esta guía se lee pero no se corre.
+
+## 1. Clonar los dos repos
+
+Lado a lado:
+
+```sh
+git clone https://github.com/Kiri23/ontology-ejemplo.git
+git clone https://github.com/Kiri23/ontologyLearning.git
+cd ontologyLearning
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+```
+
+## 2. Apuntar el motor a este repo
+
+Todos los comandos se corren desde `ontologyLearning/`. Tres variables eligen el grafo:
+
+```sh
+E=../ontology-ejemplo
+export ONTOLOGY_RAICES=$E/raices.json   # qué repos entran: solo este
+export ONTOLOGY_SALIDA=$E/grafo         # dónde se escribe el grafo
+export ONTOLOGY_SIN_DOMAIN=1            # sin el dominio propio del motor: solo tus clases
+export ONTOLOGY_VERBOS=$PWD/tests/fixtures/ontologylearning/vocabulary.ttl
+```
+
+La última es la lista de comandos del motor. Vive en otro repo, privado; la copia de los tests alcanza.
+
+Las tres primeras también existen como flags, antes del comando:
+`main.py cli --raices $E/raices.json --salida $E/grafo --sin-domain list jardin:Planta`.
+
+## 3. Armar el grafo
+
+`instancias` junta los `.ttl` del repo que tienen plantas, los valida contra `planta-reglas.ttl` y escribe el grafo:
+
+```
+$ .venv/bin/python main.py cli instancias
+…/ontology-ejemplo/grafo/instancias.trig: 0 vocabularios, 0 proyectos, 1 con instancias de las ontologia/ de las raíces, 1 grafos, SHACL conforma
+```
+
+Si una planta no cumple las reglas, no se escribe nada y el reporte dice cuál y por qué. Con una luz `"mucha"`:
+
+```
+Focus Node: planta:cactus
+Value Node: Literal("mucha")
+Message: La luz de una planta es "sol", "media" o "sombra".
+no escribí …/ontology-ejemplo/grafo/instancias.trig
+```
+
+## 4. Preguntarle al grafo
+
+`describe` muestra qué clases hay. Sin el dominio del motor, solo la tuya:
+
+```
+$ .venv/bin/python main.py cli describe
+{
+  "clases": [
+    {
+      "clase": "jardin:Planta",
+      "iri": "https://github.com/Kiri23/ontology-ejemplo/jardin#Planta",
+      "comentario": "Una planta de la casa: cómo se llama, cada cuántos días se riega y cuánta luz quiere."
+    }
+  ]
+}
+```
+
+`describe jardin:Planta` da la clase entera: sus propiedades con su rango, su shape y el próximo paso
+(`"call": "list jardin:Planta"`).
+
+`list` da las instancias de una clase:
+
+```
+$ .venv/bin/python main.py cli list jardin:Planta
+[
+  { "iri": "https://github.com/Kiri23/ontology-ejemplo/planta/albahaca", "etiqueta": "albahaca" },
+  { "iri": "https://github.com/Kiri23/ontology-ejemplo/planta/aloe", "etiqueta": "aloe" },
+  { "iri": "https://github.com/Kiri23/ontology-ejemplo/planta/helecho", "etiqueta": "helecho" },
+  { "iri": "https://github.com/Kiri23/ontology-ejemplo/planta/pothos", "etiqueta": "pothos" },
+  { "iri": "https://github.com/Kiri23/ontology-ejemplo/planta/sansevieria", "etiqueta": "sansevieria" }
+]
+```
+
+`get` da una con todos sus datos:
+
+```
+$ .venv/bin/python main.py cli get https://github.com/Kiri23/ontology-ejemplo/planta/pothos
+{
+  "iri": "https://github.com/Kiri23/ontology-ejemplo/planta/pothos",
+  "propiedades": {
+    "rdf:type": [ "https://github.com/Kiri23/ontology-ejemplo/jardin#Planta" ],
+    "rdfs:label": [ "pothos" ],
+    "jardin:luz": [ "media" ],
+    "jardin:riegoCadaDias": [ 7 ]
+  }
+}
+```
+
+`query` corre una consulta de `ontologia/` por su nombre. `?_dias` en el `.rq` es un parámetro obligatorio, y se
+pasa como `dias=3`:
+
+```
+$ .venv/bin/python main.py cli query riego dias=3
+[
+  { "planta": "https://github.com/Kiri23/ontology-ejemplo/planta/albahaca", "nombre": "albahaca", "riegoCadaDias": 2, "luz": "sol" },
+  { "planta": "https://github.com/Kiri23/ontology-ejemplo/planta/helecho", "nombre": "helecho", "riegoCadaDias": 3, "luz": "sombra" }
+]
+```
+
+La salida de la CLI sale en varias líneas; acá está compactada para que se lea.
+
+## 5. Lo mismo desde un agente, por MCP
+
+El MCP ofrece los mismos cuatro comandos como tools: `describe`, `list`, `get` y `query`. Cada tool corre la CLI con
+las variables del paso 2, así que lee el mismo grafo. Necesita el paquete `mcp` y un token, cualquier texto:
+
+```sh
+.venv/bin/pip install -r requirements-mcp.txt
+export ONTOLOGY_MCP_TOKEN=un-token-local
+.venv/bin/python main.py mcp --puerto 8802
+```
+
+```
+http://127.0.0.1:8802/mcp  ·  describe · get · list · query · ver_plaza · registrar_plaza  ·  Bearer ONTOLOGY_MCP_TOKEN
+```
+
+Desde otra terminal, registralo en Claude Code:
+
+```sh
+claude mcp add --transport http jardin http://127.0.0.1:8802/mcp --header "Authorization: Bearer un-token-local"
+```
+
+Pedirle "¿qué plantas riego cada 3 días o menos?" termina en el tool `query` con `{"consulta": "riego", "filtros":
+{"dias": "3"}}`, que devuelve lo mismo que el paso 4: albahaca y helecho. `ver_plaza` y `registrar_plaza` son del
+dominio propio del motor y no sirven en este grafo.
+
+La web del motor (`main.py web`) no arranca con `ONTOLOGY_SIN_DOMAIN`: sus rutas son del dominio propio del motor.
+
+## Sumar lo tuyo
+
+- **Otra planta:** una línea más en `plantas/plantas.ttl` y `instancias` otra vez.
+- **Otra clase:** su `rdfs:Class` en un `.ttl` de `ontologia/` y su `sh:NodeShape` en un archivo que termine en
+  `-reglas.ttl`. Sus datos van en cualquier `.ttl` fuera de `ontologia/`.
+- **Otra consulta:** un `.rq` en `ontologia/`. Su nombre de archivo es el nombre con el que la llamás.
+
+Usá tu propio espacio de nombres, como `jardin:` acá. Las reglas completas de qué va en `ontologia/` están en
+`docs/dominio-de-afuera.md` de ontologyLearning.
+
+## Para qué sirve
+
+ontologyLearning la usa con un `tests/test_ejemplo.py` que corre esta guía de punta a punta contra una copia fijada a un
+commit de este repo. Si un cambio en el motor rompe los dominios de afuera, esa prueba falla.
