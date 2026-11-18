@@ -41,12 +41,12 @@ E=../ontology-ejemplo
 export ONTOLOGY_RAICES=$E/raices.json   # qué repos entran: solo este
 export ONTOLOGY_SALIDA=$E/grafo         # dónde se escribe el grafo
 export ONTOLOGY_SIN_DOMAIN=1            # sin el dominio propio del motor: solo tus clases
-export ONTOLOGY_VERBOS=$PWD/tests/fixtures/ontologylearning/vocabulary.ttl
 ```
 
-La última es la lista de comandos del motor. Vive en otro repo, privado; la copia de los tests alcanza.
+Sin el dominio propio, la salida es obligatoria: sin `ONTOLOGY_SALIDA`, el motor sale con exit 2 en vez de leer su
+propio `generado/`.
 
-Las tres primeras también existen como flags, antes del comando:
+Las tres también existen como flags, antes del comando:
 `main.py cli --raices $E/raices.json --salida $E/grafo --sin-domain list jardin:Planta`.
 
 ## 3. Armar el grafo
@@ -140,7 +140,7 @@ export ONTOLOGY_MCP_TOKEN=un-token-local
 ```
 
 ```
-http://127.0.0.1:8802/mcp  ·  describe · get · list · query · ver_plaza · registrar_plaza  ·  Bearer ONTOLOGY_MCP_TOKEN
+http://127.0.0.1:8802/mcp  ·  describe · get · list · query  ·  Bearer ONTOLOGY_MCP_TOKEN
 ```
 
 Desde otra terminal, registralo en Claude Code:
@@ -150,8 +150,7 @@ claude mcp add --transport http jardin http://127.0.0.1:8802/mcp --header "Autho
 ```
 
 Pedirle "¿qué plantas riego cada 3 días o menos?" termina en el tool `query` con `{"consulta": "riego", "filtros":
-{"dias": "3"}}`, que devuelve lo mismo que el paso 4: albahaca y helecho. `ver_plaza` y `registrar_plaza` son del
-dominio propio del motor y no sirven en este grafo.
+{"dias": "3"}}`, que devuelve lo mismo que el paso 4: albahaca y helecho.
 
 La web del motor (`main.py web`) no arranca con `ONTOLOGY_SIN_DOMAIN`: sus rutas son del dominio propio del motor.
 
