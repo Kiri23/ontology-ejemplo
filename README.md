@@ -13,6 +13,8 @@ Lo que hay acá:
 | `ontologia/riego.rq` | una consulta: las plantas que se riegan cada `dias` días o más seguido |
 | `plantas/plantas.ttl` | los datos: cinco plantas |
 | `raices.json` | le dice al motor que este repo es la única raíz del grafo |
+| `docs/` | el sitio de este repo: una portada y estos archivos tal cual, para GitHub Pages |
+| `armar-docs.sh` | rearma `docs/_catalogo/` después de cambiar un archivo de arriba (`--check` solo revisa) |
 
 `grafo/` aparece cuando corrés el motor y no se versiona.
 
