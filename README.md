@@ -80,6 +80,18 @@ deno task generar   # escribe los .ttl
 deno task check     # sale con 1 si algún .ttl quedó atrasado
 ```
 
+Al generar dice primero en qué carpeta guardó y después de dónde sale cada archivo. La carpeta `ontologia/` y esos
+nombres son fijos (el motor los reconoce por cómo se llaman), por eso el código no los nombra. La consulta sale con
+`ok` porque no se escribe: solo se revisa que exista.
+
+```
+jardin: files in /…/ontology-ejemplo/
+wrote ontologia/planta.ttl         ← model Planta
+wrote ontologia/planta-reglas.ttl  ← model Planta
+ok    ontologia/riego.rq           ← query "riego" (written by hand)
+wrote plantas/plantas.ttl          ← 5 instances
+```
+
 La librería es [`@kiri23/ontology-client`](https://github.com/Kiri23/ontology-client), entrada `model`. Mientras su
 versión 0.7.0 no esté publicada en JSR, `deno.json` la importa de GitHub, fijada a un commit.
 

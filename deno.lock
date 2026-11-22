@@ -18,8 +18,8 @@
         "@types/node"
       ]
     },
-    "@types/node@26.2.0": {
-      "integrity": "sha512-5IviulTZeRNp2vAJ514cc/HUlY5nZ9fCbq9DMyC52BrhFZACo3nI0R7qBxhQmo/d27NFe96ur/b7Wwxklda+kg==",
+    "@types/node@26.6.6": {
+      "integrity": "sha512-MzQj+8Kx3XI40OmUAE6Qoh58ZMNstNNMwn2nfd3qWsfe7nDNSqJNzes4njhz6AHwrSHOffSLwXU6yb474Q4aog==",
       "dependencies": [
         "undici-types"
       ]
@@ -78,25 +78,23 @@
         "safe-buffer"
       ]
     },
-    "undici-types@8.3.0": {
-      "integrity": "sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ=="
+    "undici-types@8.9.0": {
+      "integrity": "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="
     }
   },
   "remote": {
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/graph.ts": "2eae098eb46e26ebcf89e7455df0213d003418be12d2f7b90abe7716b7de47fb",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/graph/node.ts": "b157cc368da0aa8be1425f0ab2ba450b2b268c9bc346e0aea1a2194bade362f5",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/model.ts": "adb64891112746ccd3910ce6b4529e1f811e606e7e29930a5e830141900f1514",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/model/domain.ts": "ba972eb1f6266d36ce3a7a300dc9dcf59fa293af8dccb19bf73484f03d87debf",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/model/files.ts": "8f64ef82d3909b5848cc8d5565ffdf9f21f426f8ed639ab985df4b01648575df",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/model/model.ts": "b6bcee2a50a3be3bd214209195216e365a93d985b8f98074daf3e47e2aab888d",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/model/shape.ts": "af1310d7b8b77fbc2a4b93ec010adb88dcdebe6810db156cebe4351b5e7ebc6a",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/vocabulary.ts": "316e3ca364913bb8e352ca2f544bbb24ce4498f099dd5bb59af3b06af0337dae",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/vocabulary/check.ts": "6ade5af071dfc8c4ccfa640055ffb2bf8fc879f37a8dc56651393633fd1bc129",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/vocabulary/edit.ts": "599d40b288c2141101efda20e8b98955889bba13fd841571a4a0b6abe18390c2",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/vocabulary/names.ts": "764be65cf6b1aceb6269566baefc781666318600d7051cdee83f4b5fccc95155",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/vocabulary/order.ts": "2df88098570c2a3d7cc918b5ff780ec41885ee0f472e7d16fa405b6b4308ac7d",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/vocabulary/terms.ts": "9cb269392bc57ce69d12cb126c24fec3508168e216a3d9b732c59b29a3272cd1",
-    "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/vocabulary/turtle.ts": "da7a1a6cf9d777e20ee91db1b5bbfbde2151c012828aabb02b527bad75a60c10"
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/graph.ts": "2eae098eb46e26ebcf89e7455df0213d003418be12d2f7b90abe7716b7de47fb",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/graph/node.ts": "b157cc368da0aa8be1425f0ab2ba450b2b268c9bc346e0aea1a2194bade362f5",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/model.ts": "adb64891112746ccd3910ce6b4529e1f811e606e7e29930a5e830141900f1514",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/model/domain.ts": "c7e0e5195662223fd44ffc881030977faf904ce8dff44891b0a925d000d5a7cd",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/model/files.ts": "8f64ef82d3909b5848cc8d5565ffdf9f21f426f8ed639ab985df4b01648575df",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/model/model.ts": "b6bcee2a50a3be3bd214209195216e365a93d985b8f98074daf3e47e2aab888d",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/model/shape.ts": "af1310d7b8b77fbc2a4b93ec010adb88dcdebe6810db156cebe4351b5e7ebc6a",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/vocabulary/edit.ts": "599d40b288c2141101efda20e8b98955889bba13fd841571a4a0b6abe18390c2",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/vocabulary/names.ts": "764be65cf6b1aceb6269566baefc781666318600d7051cdee83f4b5fccc95155",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/vocabulary/order.ts": "2df88098570c2a3d7cc918b5ff780ec41885ee0f472e7d16fa405b6b4308ac7d",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/vocabulary/terms.ts": "9cb269392bc57ce69d12cb126c24fec3508168e216a3d9b732c59b29a3272cd1",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/vocabulary/turtle.ts": "da7a1a6cf9d777e20ee91db1b5bbfbde2151c012828aabb02b527bad75a60c10"
   },
   "workspace": {
     "dependencies": [

@@ -1,6 +1,6 @@
 {
   "imports": {
-    "@kiri23/ontology-client/model": "https://raw.githubusercontent.com/Kiri23/ontology-client/bb9d911d078709b481e58210e436d9af25dfd718/model.ts",
+    "@kiri23/ontology-client/model": "https://raw.githubusercontent.com/Kiri23/ontology-client/970a472aa56dc0e906350252c8b28e1a54cce967/model.ts",
     "n3": "npm:n3@^2.13.12",
     "@types/n3": "npm:@types/n3@^1.26.4"
   },
