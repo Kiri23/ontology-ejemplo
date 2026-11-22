@@ -4,22 +4,88 @@ Este repo declara un dominio chico, las plantas de una casa, y con eso tiene su 
 [ontologyLearning](https://github.com/Kiri23/ontologyLearning), el motor: lee la carpeta `ontologia/`, valida los datos
 con SHACL y los sirve por CLI y por MCP. No hay que tocar el motor.
 
-Lo que hay acá:
+El dominio se escribe en TypeScript, en tres archivos que se leen de corrido. De ellos salen los archivos que lee el
+motor (Turtle y SHACL), que no hace falta escribir ni leer a mano.
+
+Lo que escribís vos:
 
 | Archivo | Qué es |
 |---|---|
-| `ontologia/planta.ttl` | la clase `jardin:Planta` y sus propiedades: `riegoCadaDias` y `luz` |
-| `ontologia/planta-reglas.ttl` | lo que toda planta cumple: un nombre, un riego de 1 día o más, una luz de tres posibles |
-| `ontologia/riego.rq` | una consulta: las plantas que se riegan cada `dias` días o más seguido |
-| `plantas/plantas.ttl` | los datos: cinco plantas |
+| `planta.modelo.ts` | qué es una planta y qué se le exige: un nombre, un riego de 1 día o más, una luz de tres posibles |
+| `plantas.ts` | los datos: cinco plantas |
+| `dominio.ts` | el jardín entero: nombra el modelo, la consulta y las plantas. Es el archivo que se corre para generar |
+| `ontologia/riego.rq` | una consulta, escrita a mano: las plantas que se riegan cada `dias` días o más seguido |
+
+Lo que se genera (no se edita):
+
+| Archivo | Sale de |
+|---|---|
+| `ontologia/planta.ttl` | `planta.modelo.ts`: la clase `jardin:Planta` y sus propiedades |
+| `ontologia/planta-reglas.ttl` | `planta.modelo.ts`: las reglas SHACL |
+| `plantas/plantas.ttl` | `plantas.ts` |
+
+Y lo demás:
+
+| Archivo | Qué es |
+|---|---|
+| `deno.json` | de dónde se importa la librería y las tareas `generar` y `check` |
 | `raices.json` | le dice al motor que este repo es la única raíz del grafo |
 | `docs/` | el sitio de este repo: una portada y estos archivos tal cual, para GitHub Pages |
 | `armar-docs.sh` | rearma `docs/_catalogo/` después de cambiar un archivo de arriba (`--check` solo revisa) |
 
 `grafo/` aparece cuando corrés el motor y no se versiona.
 
+## Así se ve el dominio
+
+El modelo, en `planta.modelo.ts`. Cada propiedad se declara una vez y sale en la clase y en sus reglas:
+
+```ts
+export class Planta extends Model {
+  static shape = Shape.of(Planta)
+    .label("Planta")
+    .comment("Una planta de la casa: cómo se llama, cada cuántos días se riega y cuánta luz quiere.")
+    .instancesIn("https://github.com/Kiri23/ontology-ejemplo/planta/")
+    .text("nombre").predicate("rdfs:label").exactly(1)
+    .message("Una planta tiene exactamente un nombre (rdfs:label).")
+    .integer("riegoCadaDias").name("riego cada días").exactly(1)
+    .comment("Cada cuántos días se riega: 7 es una vez por semana.")
+    .shacl("sh:minInclusive 1")
+    .message("Una planta se riega cada 1 día o más (jardin:riegoCadaDias, un entero).")
+    .text("luz").exactly(1).oneOf("sol", "media", "sombra")
+    .comment('Cuánta luz quiere: "sol", "media" o "sombra".')
+    .message('La luz de una planta es "sol", "media" o "sombra".');
+}
+```
+
+Una planta, en `plantas.ts`. Los métodos salen del modelo: `.luz("mucha")` no compila.
+
+```ts
+Planta.create("pothos").nombre("pothos").riegoCadaDias(7).luz("media"),
+```
+
+Y el jardín, en `dominio.ts`:
+
+```ts
+const jardin = Domain.create("jardin").at(import.meta)
+  .namespace("https://github.com/Kiri23/ontology-ejemplo/jardin#")
+  .model(Planta)
+  .query("riego")
+  .instances(plantas).in("plantas/plantas.ttl");
+```
+
+Después de cambiar un `.ts`:
+
+```sh
+deno task generar   # escribe los .ttl
+deno task check     # sale con 1 si algún .ttl quedó atrasado
+```
+
+La librería es [`@kiri23/ontology-client`](https://github.com/Kiri23/ontology-client), entrada `model`. Mientras su
+versión 0.6.0 no esté publicada en JSR, `deno.json` la importa de GitHub, fijada a un commit.
+
 ## Lo que necesitás
 
+- [Deno](https://deno.com), para generar. Los `.ttl` generados están en el repo: para solo correr el motor no hace falta.
 - Python 3.11.
 - Un checkout de ontologyLearning. Hoy es un repo privado: sin acceso, esta guía se lee pero no se corre.
 
@@ -158,10 +224,13 @@ La web del motor (`main.py web`) no arranca con `ONTOLOGY_SIN_DOMAIN`: sus rutas
 
 ## Sumar lo tuyo
 
-- **Otra planta:** una línea más en `plantas/plantas.ttl` y `instancias` otra vez.
-- **Otra clase:** su `rdfs:Class` en un `.ttl` de `ontologia/` y su `sh:NodeShape` en un archivo que termine en
-  `-reglas.ttl`. Sus datos van en cualquier `.ttl` fuera de `ontologia/`.
-- **Otra consulta:** un `.rq` en `ontologia/`. Su nombre de archivo es el nombre con el que la llamás.
+- **Otra planta:** una línea más en `plantas.ts`, `deno task generar` e `instancias` otra vez.
+- **Otra clase:** un `<clase>.modelo.ts` como el de Planta, y sumarla en `dominio.ts` con `.model(Planta, Otra)`. Al
+  generar salen `ontologia/<clase>.ttl` y `ontologia/<clase>-reglas.ttl`.
+- **Otra consulta:** un `.rq` en `ontologia/`, a mano, y nombrarla en `dominio.ts` con `.query("riego", "otra")`. Su
+  nombre de archivo es el nombre con el que la llamás.
+
+También se puede sin TypeScript: el motor solo lee los `.ttl` y los `.rq`, y no le importa quién los escribió.
 
 Usá tu propio espacio de nombres, como `jardin:` acá. Las reglas completas de qué va en `ontologia/` están en
 `docs/dominio-de-afuera.md` de ontologyLearning.

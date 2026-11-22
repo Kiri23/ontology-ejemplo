@@ -10,10 +10,13 @@ Acá están los archivos que el tutorial usa, tal cual:
 
 | Archivo | Qué es |
 |---|---|
-| [`ontologia/planta.ttl`](/_catalogo/ontologia/planta.ttl.md) | la clase `jardin:Planta` y sus propiedades |
-| [`ontologia/planta-reglas.ttl`](/_catalogo/ontologia/planta-reglas.ttl.md) | lo que toda planta cumple (SHACL) |
-| [`ontologia/riego.rq`](/_catalogo/ontologia/riego.rq.md) | la consulta: qué plantas se riegan cada `dias` días o más seguido |
-| [`plantas/plantas.ttl`](/_catalogo/plantas/plantas.ttl.md) | los datos: cinco plantas |
+| [`planta.modelo.ts`](/_catalogo/planta.modelo.ts.md) | lo que se escribe: qué es una planta y qué se le exige |
+| [`plantas.ts`](/_catalogo/plantas.ts.md) | lo que se escribe: cinco plantas |
+| [`dominio.ts`](/_catalogo/dominio.ts.md) | lo que se corre para generar: nombra el modelo, la consulta y las plantas |
+| [`ontologia/riego.rq`](/_catalogo/ontologia/riego.rq.md) | la consulta, a mano: qué plantas se riegan cada `dias` días o más seguido |
+| [`ontologia/planta.ttl`](/_catalogo/ontologia/planta.ttl.md) | generado: la clase `jardin:Planta` y sus propiedades |
+| [`ontologia/planta-reglas.ttl`](/_catalogo/ontologia/planta-reglas.ttl.md) | generado: lo que toda planta cumple (SHACL) |
+| [`plantas/plantas.ttl`](/_catalogo/plantas/plantas.ttl.md) | generado: los datos |
 | [`raices.json`](/_catalogo/raices.json.md) | le dice al motor que este repo es la única raíz del grafo |
 
 La lista entera, con su menú, está en el [catálogo](/_catalogo/README.md).

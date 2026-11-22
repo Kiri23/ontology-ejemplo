@@ -1,0 +1,107 @@
+{
+  "version": "5",
+  "specifiers": {
+    "npm:@types/n3@^1.26.4": "1.26.6",
+    "npm:n3@^2.13.12": "2.13.12"
+  },
+  "npm": {
+    "@rdfjs/types@2.0.1": {
+      "integrity": "sha512-uyAzpugX7KekAXAHq26m3JlUIZJOC0uSBhpnefGV5i15bevDyyejoB7I+9MKeUrzXD8OOUI3+4FeV1wwQr5ihA==",
+      "dependencies": [
+        "@types/node"
+      ]
+    },
+    "@types/n3@1.26.6": {
+      "integrity": "sha512-BLXT2zu5wcbIotEVJsCI/eUjV5QWbwNBPNwnDrEf3qFv844UiCGe8Pg/PKSBR572V2BtBFlu46pDLtvhsOeWqg==",
+      "dependencies": [
+        "@rdfjs/types",
+        "@types/node"
+      ]
+    },
+    "@types/node@26.2.0": {
+      "integrity": "sha512-5IviulTZeRNp2vAJ514cc/HUlY5nZ9fCbq9DMyC52BrhFZACo3nI0R7qBxhQmo/d27NFe96ur/b7Wwxklda+kg==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "abort-controller@3.0.0": {
+      "integrity": "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==",
+      "dependencies": [
+        "event-target-shim"
+      ]
+    },
+    "base64-js@1.5.1": {
+      "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA=="
+    },
+    "buffer@6.0.3": {
+      "integrity": "sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==",
+      "dependencies": [
+        "base64-js",
+        "ieee754"
+      ]
+    },
+    "event-target-shim@5.0.1": {
+      "integrity": "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ=="
+    },
+    "events@3.3.0": {
+      "integrity": "sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q=="
+    },
+    "ieee754@1.2.1": {
+      "integrity": "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA=="
+    },
+    "n3@2.13.12": {
+      "integrity": "sha512-z944NsyJi58WXcYevtNkUL2JhVr0KP6nvED9AgymQq5V35TDaNn1N8kO+OWJk/kj4PR0L/ilWB3d7/bWceg1CQ==",
+      "dependencies": [
+        "buffer",
+        "readable-stream"
+      ]
+    },
+    "process@0.11.10": {
+      "integrity": "sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A=="
+    },
+    "readable-stream@4.8.0": {
+      "integrity": "sha512-2jhTTU3Eilp/2DMT71gbcoqC35eQHasMJH0RHkYxwlxIv3+FR6Y5xAFZIwEGLxKkjZYEFlsiMNIdwUqjK2lLHQ==",
+      "dependencies": [
+        "abort-controller",
+        "buffer",
+        "events",
+        "process",
+        "string_decoder"
+      ]
+    },
+    "safe-buffer@5.2.1": {
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="
+    },
+    "string_decoder@1.3.0": {
+      "integrity": "sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==",
+      "dependencies": [
+        "safe-buffer"
+      ]
+    },
+    "undici-types@8.3.0": {
+      "integrity": "sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ=="
+    }
+  },
+  "remote": {
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/graph.ts": "3366d631b2579f1ea65f8f7ea853bb2026cbb8e64b59a10c5b63e8efc5fb3b6f",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/graph/node.ts": "7c9aa52e3fc731a97d43222c16643f14b3e12992057c506e05fbe5c5e2f64749",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/model.ts": "1dbf5707d21b42d411d6ba6be20f08e36ebeb0695540b793de8f5e473f25157f",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/model/domain.ts": "b23b6353e06dc5b159f1a8a9fc45f7d209f53728d59665f6b61522dfef0c15e9",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/model/files.ts": "c0e64a549390bc71261e3e3c0ca5d9ad9c4708ac65f3b9a7bc7f04296c84811a",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/model/model.ts": "8366f3210bb2c16299b0fd457630e29b1a0294adf9cd7d593193359f9a5e8b0b",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/model/shape.ts": "071dc385a2016cd72f2ebf8e6515f7598f1f95031c52dbc7e280729dc5f9e688",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/vocabulary.ts": "94032e04e36aa837eaee1bf24b07d6059352b912481589e5ee945ad12303ebae",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/vocabulary/check.ts": "6ade5af071dfc8c4ccfa640055ffb2bf8fc879f37a8dc56651393633fd1bc129",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/vocabulary/edit.ts": "6a34f84834451befa6eae79fbc3cb769372f6110843d3e9992501e48137a44ca",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/vocabulary/names.ts": "764be65cf6b1aceb6269566baefc781666318600d7051cdee83f4b5fccc95155",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/vocabulary/order.ts": "2df88098570c2a3d7cc918b5ff780ec41885ee0f472e7d16fa405b6b4308ac7d",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/vocabulary/terms.ts": "9cb269392bc57ce69d12cb126c24fec3508168e216a3d9b732c59b29a3272cd1",
+    "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/vocabulary/turtle.ts": "da7a1a6cf9d777e20ee91db1b5bbfbde2151c012828aabb02b527bad75a60c10"
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:@types/n3@^1.26.4",
+      "npm:n3@^2.13.12"
+    ]
+  }
+}

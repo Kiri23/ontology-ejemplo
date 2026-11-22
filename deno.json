@@ -1,0 +1,11 @@
+{
+  "imports": {
+    "@kiri23/ontology-client/model": "https://raw.githubusercontent.com/Kiri23/ontology-client/72d0cb8c486d11f9fdfb8a21485bb77f5cf81a5b/model.ts",
+    "n3": "npm:n3@^2.13.12",
+    "@types/n3": "npm:@types/n3@^1.26.4"
+  },
+  "tasks": {
+    "generar": "deno run --allow-read=. --allow-write=. --allow-env=READABLE_STREAM dominio.ts",
+    "check": "deno run --allow-read=. --allow-write=. --allow-env=READABLE_STREAM dominio.ts --check"
+  }
+}
