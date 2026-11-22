@@ -6,11 +6,11 @@ import { Domain } from "@kiri23/ontology-client/model";
 import { Planta } from "./planta.modelo.ts";
 import { plantas } from "./plantas.ts";
 
-const jardin = Domain.create("jardin").at(import.meta)
+const jardin = Domain.named("jardin").inFolderOf(import.meta)
   .namespace("https://github.com/Kiri23/ontology-ejemplo/jardin#")
   .model(Planta)
   .query("riego")
-  .instances(plantas).in("plantas/plantas.ttl");
+  .instances(plantas).toFile("plantas/plantas.ttl");
 
-if (import.meta.main) Deno.exit(jardin.main(Deno.args));
+if (import.meta.main) Deno.exit(jardin.runCli(Deno.args));
 ```
