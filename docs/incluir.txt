@@ -1,6 +1,9 @@
 # Lo que el sitio muestra tal cual, además de la portada. Un patrón por línea, relativo a la raíz
 # del repo. Lo copia ./armar-docs.sh a docs/_catalogo/.
 raices.json
+planta.modelo.ts
+plantas.ts
+dominio.ts
 ontologia/*.ttl
 ontologia/*.rq
 plantas/*.ttl
